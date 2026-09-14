@@ -1,6 +1,4 @@
 
-
-
 def create_grid(rows: int, cols: int) -> list[list[int]]:
     grid = [] # main grid 
     for _ in range(rows):
@@ -49,13 +47,13 @@ def next_generation(grid: list[list[int]]) -> list[list[int]]:
     return new_grid
 
 
-    def display_grid(grid: list[list[bool]]) -> None:
-        for row in grid:
-            for cell in row:
-                if cell == True:
-                    print("@")
-                else :
-                    print("*")
+def display_grid(grid: list[list[bool]]) -> None:
+    for row in grid:
+        for cell in row:
+            if cell == True:
+                print("@")
+            else :
+                print("*")
                     
                 
             
