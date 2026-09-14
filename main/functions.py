@@ -6,7 +6,7 @@ def create_grid(rows: int, cols: int) -> list[list[int]]:
     for _ in range(rows):
         new_row = [] # grid for each row 
         for _ in range(cols):
-            new_row.append(0)  # Initialize each cell with 0
+            new_row.append(False)  # Initialize each cell with bool false 
         grid.append(new_row)
     return grid
     
@@ -27,3 +27,23 @@ def count_neighbors(grid: list[list[int]], row: int, col: int) -> int:
                 counter = counter + 1
     return counter  
             
+def next_generation(grid: list[list[int]]) -> list[list[int]]:
+    
+    new_grid = create_grid(len(grid), len(grid[0]))  #grid for the next generation
+    
+    for row in range(len(grid)):
+        for col in range(len(grid[0])):
+            cell = grid[row][col]
+            neighbors = count_neighbors(grid,row,col)
+            
+            if cell == True and neighbors < 2:  # rules of Conway’s Game of Life 
+                cell = False
+            elif cell == True and (neighbors == 2 or neighbors == 3):
+                cell = True
+            elif cell == True and neighbors >3:
+                cell = False
+            elif cell == False and neighbors == 3:
+                cell = True
+            new_grid[row][col] = cell # replace the current value of the cell and adds the new value in new grid
+                
+    return new_grid
