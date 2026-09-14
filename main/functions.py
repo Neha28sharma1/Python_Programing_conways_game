@@ -31,9 +31,9 @@ def next_generation(grid: list[list[int]]) -> list[list[int]]:
     
     new_grid = create_grid(len(grid), len(grid[0]))  #grid for the next generation
     
-    for row in range(len(grid)):
-        for col in range(len(grid[0])):
-            cell = grid[row][col]
+    for row in range(len(grid)): #Go through the positions of all the rows in grid, one by one
+        for col in range(len(grid[0])): #grid[0] represents the first row and we want to know how many col are there in the row 
+            cell = grid[row][col]  # to get the value of one specific cell from the grid so that we can later check if it is true or false 
             neighbors = count_neighbors(grid,row,col)
             
             if cell == True and neighbors < 2:  # rules of Conway’s Game of Life 
@@ -47,3 +47,6 @@ def next_generation(grid: list[list[int]]) -> list[list[int]]:
             new_grid[row][col] = cell # replace the current value of the cell and adds the new value in new grid
                 
     return new_grid
+
+
+    
