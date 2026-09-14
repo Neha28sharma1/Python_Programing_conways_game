@@ -48,7 +48,6 @@ def next_generation(grid: list[list[int]]) -> list[list[int]]:
 
 
 def display_grid(grid: list[list[bool]]) -> None:
-    """Display the grid using @ for alive cells and * for dead cells."""
     for row in grid:
         for cell in row:
             if cell == True:
