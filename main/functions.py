@@ -49,4 +49,14 @@ def next_generation(grid: list[list[int]]) -> list[list[int]]:
     return new_grid
 
 
-    
+    def display_grid(grid: list[list[bool]]) -> None:
+        for row in grid:
+            for cell in row:
+                if cell == True:
+                    print("@")
+                else :
+                    print("*")
+                    
+                
+            
+                
