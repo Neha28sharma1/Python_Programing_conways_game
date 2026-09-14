@@ -51,9 +51,12 @@ def display_grid(grid: list[list[bool]]) -> None:
     for row in grid:
         for cell in row:
             if cell == True:
-                print("@")
-            else :
-                print("*")
+                print("@", end="")
+            else:
+                print("*", end="")
+
+        # Move to the next line after printing the entire row
+        print()
                     
                 
             
