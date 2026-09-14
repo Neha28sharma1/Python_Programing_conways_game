@@ -23,7 +23,7 @@ def count_neighbors(grid: list[list[int]], row: int, col: int) -> int:
                 continue  # Skip the cell itself
             if neighbor_row < 0 or neighbor_row >= len(grid) or neighbor_col < 0 or neighbor_col >= len(grid[0]):
                 continue
-            if grid[neighbor_row][neighbor_col] == 1:
+            if grid[neighbor_row][neighbor_col] == True:
                 counter = counter + 1
     return counter  
             
