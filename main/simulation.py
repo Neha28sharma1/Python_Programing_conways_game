@@ -37,7 +37,5 @@ def run_simulation(filename: str, generations: int) -> None:
         # Generate the next grid
         grids = next_generation(grids)
 
-if __name__ == "__main__":
-    run_simulation("configurationfile.txt", 100)
 
 
