@@ -1,5 +1,5 @@
 
-def create_grid(rows: int, cols: int) -> list[list[int]]:
+def create_grid(rows: int, cols: int) -> list[list[bool]]:
     grid = [] # main grid 
     for _ in range(rows):
         new_row = [] # grid for each row 
@@ -9,7 +9,7 @@ def create_grid(rows: int, cols: int) -> list[list[int]]:
     return grid
     
     
-def count_neighbors(grid: list[list[int]], row: int, col: int) -> int:
+def count_neighbors(grid: list[list[bool]], row: int, col: int) -> int:
     counter = 0
     
     for row_steps in [-1, 0, 1]: # -1 for row above , 0 for same row and +1 for row down 
@@ -25,7 +25,7 @@ def count_neighbors(grid: list[list[int]], row: int, col: int) -> int:
                 counter = counter + 1
     return counter  
             
-def next_generation(grid: list[list[int]]) -> list[list[int]]:
+def next_generation(grid: list[list[bool]]) -> list[list[bool]]:
     
     new_grid = create_grid(len(grid), len(grid[0]))  #grid for the next generation
     
