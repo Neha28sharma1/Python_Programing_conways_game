@@ -2,9 +2,9 @@
 def create_grid(rows: int, cols: int) -> list[list[bool]]:
     grid = [] # main grid 
     for _ in range(rows):
-        new_row = [] # grid for each row 
+        new_row :list[int]= []
         for _ in range(cols):
-            new_row.append(False)  # Initialize each cell with bool false 
+            new_row.append(0) # Initialize each cell with bool false 
         grid.append(new_row)
     return grid
     
@@ -20,8 +20,8 @@ def count_neighbors(grid: list[list[bool]], row: int, col: int) -> int:
             if neighbor_row == row and neighbor_col == col: # we dnt want to count the current cell as neighbor 
                 continue  # Skip the cell itself
             if neighbor_row < 0 or neighbor_row >= len(grid) or neighbor_col < 0 or neighbor_col >= len(grid[0]):
-                continue
-            if grid[neighbor_row][neighbor_col] == True:
+                continue #we do not want to count corners
+            if grid[neighbor_row][neighbor_col] == 1:
                 counter = counter + 1
     return counter  
             
@@ -34,14 +34,14 @@ def next_generation(grid: list[list[bool]]) -> list[list[bool]]:
             cell = grid[row][col]  # to get the value of one specific cell from the grid so that we can later check if it is true or false 
             neighbors = count_neighbors(grid,row,col)
             
-            if cell == True and neighbors < 2:  # rules of Conway’s Game of Life 
-                cell = False
-            elif cell == True and (neighbors == 2 or neighbors == 3):
-                cell = True
-            elif cell == True and neighbors >3:
-                cell = False
-            elif cell == False and neighbors == 3:
-                cell = True
+            if cell == 1 and neighbors < 2:  # rules of Conway’s Game of Life 
+                cell = 0
+            elif cell == 1 and (neighbors == 2 or neighbors == 3):
+                cell = 1
+            elif cell == 1 and neighbors >3:
+                cell = 0
+            elif cell == 0 and neighbors == 3:
+                cell = 1
             new_grid[row][col] = cell # replace the current value of the cell and adds the new value in new grid
                 
     return new_grid
@@ -57,6 +57,7 @@ def display_grid(grid: list[list[bool]]) -> None:
 
         # Move to the next line after printing the entire row
         print()
+
                     
                 
             
