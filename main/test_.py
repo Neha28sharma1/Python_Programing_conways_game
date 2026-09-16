@@ -1,6 +1,4 @@
 
-import pytest
-
 from main_functions import create_grid,count_neighbors,next_generation
 
 def test_create_grid():
@@ -19,6 +17,7 @@ def test_count_neighbors():
     
     count = count_neighbors(grid,1,1)
     assert count == 3
+    
 def test_next_generation():
     grid = [[0,0,0,0],
             [1,0,0,0],
