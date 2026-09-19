@@ -7,8 +7,7 @@ def create_grid(rows: int, cols: int) -> list[list[bool]]:
             new_row.append(False)  # Initialize each cell with bool false 
         grid.append(new_row)
     return grid
-    
-    
+        
 def count_neighbors(grid: list[list[bool]], row: int, col: int) -> int:
     counter = 0
     
@@ -45,19 +44,27 @@ def next_generation(grid: list[list[bool]]) -> list[list[bool]]:
             new_grid[row][col] = cell # replace the current value of the cell and adds the new value in new grid
                 
     return new_grid
-
-
-def display_grid(grid: list[list[bool]]) -> None:
-    for row in grid:
-        for cell in row:
-            if cell == True:
-                print("@", end="")
-            else:
-                print("*", end="")
-
-        # Move to the next line after printing the entire row
-        print()
-                    
                 
-            
+def display_grid(grid: list[list[bool]], death_count: list[list[int]]) -> None:
+
+    BLUE = "\033[38;2;0;0;200m"
+    RESET = "\033[0m"
+    for row in range(len(grid)):
+        for cell in range(len(grid[0])):
+            if grid[row][cell]:
+                # Alive cells in blue
+                print(f"{BLUE}◼{RESET}", end=" ")
+            else:
+                # Dead cells in red gradient based on death count
+                count = death_count[row][cell]
+                # Limit the count to the range 1–10
+                count = min(count, 10)
+                # Red intensity increases as death count increases
+                red = int(150 + (105 * (count) / 10))
+                # Keep green and blue low to create shades of red
+                green = 0
+                blue = 0
+                RED_GRADIENT = f"\033[38;2;{red};{green};{blue}m"
+                print(f"{RED_GRADIENT}◼{RESET}", end=" ")
+        print()
                 

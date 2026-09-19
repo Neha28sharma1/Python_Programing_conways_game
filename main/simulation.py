@@ -20,13 +20,15 @@ def generate_random_grid(rows: int, cols: int, density: float=0.3):
 
 def parse_grid(filename: str) -> list[list[bool]]:
     # Create random integer in range 10 to 20 for the rows and cols
-    rows=cols=random.randint(6,10)
+    rows=cols=random.randint(10,50)
     generate_random_grid(rows,cols)
-
-    with open(filename, "r") as file:
-        # Convert @ to True and * to False for each cell
-        grid = [[cell == "@" for cell in line.strip()]
-            for line in file]
+    try:
+        with open(filename, "r") as file:
+            # Convert @ to True and * to False for each cell
+            grid = [[cell == "@" for cell in line.strip()]
+                for line in file]
+    except FileNotFoundError:
+        print(f"File '{filename}' was not found")
     return grid
 
 def global_statistics(current_grid: list[list[bool]],next_grid: list[list[bool]]) ->None:
@@ -50,23 +52,32 @@ def global_statistics(current_grid: list[list[bool]],next_grid: list[list[bool]]
 def run_simulation(filename: str, generations: int) -> None:
 
     grid = parse_grid(filename)
+    death_count=[]
+    for row in grid:
+        death_count.append([0]*len(row))
     for generation in range(generations):
         # Clear the terminal
         subprocess.run("cls", shell=True)       
         # Print the generation number
         print(f"Generation {generation+1}")
         # Display the grid
-        display_grid(grid)       
+        display_grid(grid,death_count)       
         # Wait for 0.5 second
         time.sleep(0.5)
 
+        # Generate the next grid
+        next_grid = next_generation(grid)
+        for row in range(len(next_grid)):
+            for col in range(len(next_grid[0])):
+                if next_grid[row][col]:
+                    death_count[row][col]=0
+                else:
+                    death_count[row][col]+=1
+        global_statistics(grid,next_grid)
+        grid=next_grid
         # Check if a key has been pressed
         if msvcrt.kbhit():
             msvcrt.getch()
             print("\nSimulation terminated by user.")
             return
-        # Generate the next grid
-        next_grid = next_generation(grid)
-        global_statistics(grid,next_grid)
-        grid=next_grid
 
