@@ -1,5 +1,5 @@
 
-from functions import create_grid,count_neighbors,next_generation
+from functions import create_grid,count_neighbors,next_generation,display_grid
 
 def test_create_grid():
     grid = create_grid(3,4)
@@ -30,3 +30,14 @@ def test_next_generation():
     [1, 0, 1, 0],
     [1, 1, 1, 0],
     ]
+
+def test_display_grid(capsys):
+    grid = [[True, False], [False, True]] 
+    death_count = [[0, 1], [10, 0]]
+    display_grid(grid,death_count)
+    captured=capsys.readouterr()
+    expected = ( "\033[38;2;0;0;200m◼\033[0m " 
+                "\033[38;2;160;0;0m◼\033[0m \n" 
+                "\033[38;2;255;0;0m◼\033[0m " 
+                "\033[38;2;0;0;200m◼\033[0m \n" )
+    assert captured.out==expected
