@@ -1,5 +1,11 @@
 
 def create_grid(rows: int, cols: int) -> list[list[bool]]:
+    """
+    Create a 2D grid initialized with False values. 
+    Args: rows: Number of rows in the grid. 
+          cols: Number of columns in the grid.
+    Returns: A 2D list where every cell is initialized to False.
+    """
     grid = [] # main grid 
     for _ in range(rows):
         new_row = [] # grid for each row 
@@ -9,6 +15,14 @@ def create_grid(rows: int, cols: int) -> list[list[bool]]:
     return grid
         
 def count_neighbors(grid: list[list[bool]], row: int, col: int) -> int:
+    """ 
+    Count the number of alive neighboring cells around a given cell. Each cell can have up to 8 neighbors: above, below, left, right, and the four diagonal positions. 
+    Args: 
+        grid: The current Game of Life grid. 
+        row: Row index of the cell. 
+        col: Column index of the cell.
+    Returns: The number of alive neighbors surrounding the specified cell. 
+    """
     counter = 0
     
     for row_steps in [-1, 0, 1]: # -1 for row above , 0 for same row and +1 for row down 
@@ -25,7 +39,12 @@ def count_neighbors(grid: list[list[bool]], row: int, col: int) -> int:
     return counter  
             
 def next_generation(grid: list[list[bool]]) -> list[list[bool]]:
-    
+    """ 
+    Calculate and return the next generation of the Game of Life. 
+    Args:
+      grid: The current generation of the Game of Life grid. 
+    Returns: A new grid representing the next generation.
+    """
     new_grid = create_grid(len(grid), len(grid[0]))  #grid for the next generation
     
     for row in range(len(grid)): #Go through the positions of all the rows in grid, one by one
@@ -46,8 +65,15 @@ def next_generation(grid: list[list[bool]]) -> list[list[bool]]:
     return new_grid
                 
 def display_grid(grid: list[list[bool]], death_count: list[list[int]]) -> None:
-
+    """
+    Display the grid using ANSI colours. Alive cells are displayed in blue. 
+    Dead cells are displayed in different shades of red and dark red if dead for more than 10 generations. 
+    Args: 
+        grid: The current Game of Life grid. death_count: A grid containing the number of generations each cell has remained dead. 
+    Returns: None. The grid is printed directly to the terminal. 
+    """
     BLUE = "\033[38;2;0;0;200m"
+    # ANSI code used to reset the terminal colour
     RESET = "\033[0m"
     for row in range(len(grid)):
         for cell in range(len(grid[0])):
