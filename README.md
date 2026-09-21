@@ -4,7 +4,8 @@
 
 This project is a Python implementation of Conway's Game of Life, a cellular automation where cells are either alive or dead. @ represents a living cell and * represents a dead cell. Each generation is calculated using Conway's rules based on the number of living neighbours.
 
-The simulation runs in the terminal and provides a visual representation of how the grid changes over time. Living cells are displayed in blue, while dead cells are shown using different shades of red depending on how long they have remained dead. Recently dead cells use lighter shades, gradually changing towards bright red for cells that have been dead for longer. This colour gradient makes the history and activity of different areas of the grid easier to observe like shown in the image.![Project Screenshot](output.png)
+The simulation runs in the terminal and provides a visual representation of how the grid changes over time. Living cells are displayed in blue, while dead cells are shown using different shades of red depending on how long they have remained dead. Recently dead cells use lighter shades, gradually changing towards bright red for cells that have been dead for longer. This colour gradient makes the history and activity of different areas of the grid easier to observe like shown in the image.
+![Project Screenshot](output.png)
 
 The program also displays the number of living cells, births, and deaths for each generation. Random starting configurations can be generated for each run using a configurable density.
 
