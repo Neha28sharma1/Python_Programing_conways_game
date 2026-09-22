@@ -1,6 +1,3 @@
-from functions import create_grid, count_neighbors, next_generation
-
-
 def test_create_grid():
     grid = create_grid(3, 4)
 
@@ -13,23 +10,19 @@ def test_create_grid():
 
 
 def test_count_neighbors():
-    grid = [[False, False, False], [True, True, True], [False, False, True]]
+    grid = [[0, 0, 0], [1, 1, 1], [0, 0, 1]]
 
     count = count_neighbors(grid, 1, 1)
     assert count == 3
 
 
 def test_next_generation():
-    grid = [
-        [False, False, False, False],
-        [True, False, False, False],
-        [True, True, True, True],
-    ]
+    grid = [[0, 0, 0, 0], [1, 0, 0, 0], [1, 1, 1, 1]]
 
     newgrid = next_generation(grid)
 
     assert newgrid == [
-        [False, False, False, False],
-        [True, False, True, False],
-        [True, True, True, False],
+        [0, 0, 0, 0],
+        [1, 0, 1, 0],
+        [1, 1, 1, 0],
     ]
